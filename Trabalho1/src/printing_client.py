@@ -13,16 +13,14 @@ import printing_pb2_grpc
 
 # --- Estado Global do Cliente ---
 
-# Usamos um Lock e uma Condition Variable para gerenciar o estado
-# de forma segura entre a thread principal (lógica do cliente)
-# e as threads do servidor gRPC (que recebem pedidos de outros).
+# Usamos um Lock e uma Condition Variable para gerenciar o estadode forma segura entre a thread principal (lógica do cliente) e as threads do servidor gRPC (que recebem pedidos de outros).
 STATE_LOCK = threading.Lock()
 STATE_CONDITION = threading.Condition(STATE_LOCK)
 
 CLIENT_ID = -1
 CLIENT_STATE = "RELEASED" # Estados: RELEASED, WANTED, HELD
 LAMPORT_CLOCK = 0
-MY_REQUEST_TIMESTAMP = -1 # Guarda o timestamp do nosso pedido
+MY_REQUEST_TIMESTAMP = -1 # Guarda o timestamp
 MY_REQUEST_NUMBER = 0
 
 # --- Funções do Relógio de Lamport (Thread-safe) ---
@@ -49,41 +47,39 @@ class MutualExclusionImpl(printing_pb2_grpc.MutualExclusionServiceServicer):
     def RequestAccess(self, request, context):
         """Handler para quando OUTRO cliente nos pede acesso (RPC)."""
         
-        # 1. Atualiza nosso relógio ao receber o pedido
+        # 1. Atualiza relógio ao receber o pedido
         received_clock = update_clock(request.lamport_timestamp)
         
         print(f"[Cliente {CLIENT_ID} | TS: {received_clock}] Recebeu RequestAccess de {request.client_id} (TS: {request.lamport_timestamp})")
 
         # 2. Lógica de Decisão de Ricart-Agrawala
-        #    Esta é a parte crucial.
         with STATE_LOCK:
-            # Verificamos se devemos deferir (atrasar) a resposta "OK"
+            # Verifica se devemos deferir (atrasar) a resposta "OK"
             should_defer = False
             
             if CLIENT_STATE == "HELD":
-                # Caso 1: Estamos na Seção Crítica (imprimindo). Deferimos.
+                # Caso 1: Esta na Seção Crítica (imprimindo).
                 should_defer = True
             elif CLIENT_STATE == "WANTED":
-                # Caso 2: Também queremos entrar. Usamos o desempate.
-                # (Nosso TS, Nosso ID) < (Dele TS, Dele ID)
+                # Caso 2: Também quer entrar. Usa o desempate.
                 if (MY_REQUEST_TIMESTAMP, CLIENT_ID) < (request.lamport_timestamp, request.client_id):
-                    # Nosso pedido é mais antigo (menor). Ele deve esperar por nós.
+                    # Pedido é mais antigo (menor). Ele deve esperar.
                     should_defer = True
                 else:
                     # O pedido dele é mais antigo (ou ID menor em caso de empate).
-                    # Nós devemos esperar por ele (respondemos OK).
+                    # Deve esperar por ele (responde OK).
                     should_defer = False
             # Caso 3: (CLIENT_STATE == "RELEASED")
             # Não estamos na SC e não queremos entrar. Respondemos OK.
             
             # 3. Loop de Espera (Deferindo a resposta)
-            #    Usamos a Condition Variable para esperar eficientemente.
+            #    Usa a Condition Variable para esperar eficientemente.
             while should_defer:
                 print(f"  [Cliente {CLIENT_ID}] Deferindo pedido de {request.client_id} (Nosso estado: {CLIENT_STATE}, Nosso TS: {MY_REQUEST_TIMESTAMP})")
                 STATE_CONDITION.wait() # Libera o lock e dorme
                 
-                # Ao acordar (notificado por notify_all()), reavaliamos a condição
-                # (nosso estado pode ter mudado para RELEASED)
+                # Ao acordar (notificado por notify_all()), reavalia a condição
+                # (o estado pode ter mudado para RELEASED)
                 
                 # REAVALIA a condição de deferir
                 if CLIENT_STATE == "HELD":
@@ -94,10 +90,9 @@ class MutualExclusionImpl(printing_pb2_grpc.MutualExclusionServiceServicer):
                     else:
                         should_defer = False
                 else:
-                    should_defer = False # Nosso estado agora é RELEASED
+                    should_defer = False # Estado agora é RELEASED
             
             # 4. Envia a Resposta "OK"
-            #    Se saímos do loop, significa que não precisamos (mais) deferir.
             reply_ts = tick() # Evento de envio de resposta
             print(f"  [Cliente {CLIENT_ID} | TS: {reply_ts}] Respondendo 'OK' para {request.client_id}")
             
@@ -108,9 +103,6 @@ class MutualExclusionImpl(printing_pb2_grpc.MutualExclusionServiceServicer):
 
     def ReleaseAccess(self, request, context):
         """Handler para o (opcional) ReleaseAccess do .proto."""
-        # No R-A clássico, esta mensagem não é necessária,
-        # pois a "liberação" é feita respondendo aos 'OKs' deferidos.
-        # Mas, como está no .proto, nós a implementamos.
         
         received_clock = update_clock(request.lamport_timestamp)
         print(f"[Cliente {CLIENT_ID} | TS: {received_clock}] Recebeu notificação 'ReleaseAccess' de {request.client_id}")
@@ -229,7 +221,7 @@ def run_client_logic(my_id, my_port, client_addresses, printer_address):
         )
         for other_id, stub in client_stubs.items():
             try:
-                # Esta é uma chamada "fire-and-forget", não esperamos resposta
+                # Esta é uma chamada "fire-and-forget", não espera resposta
                 stub.ReleaseAccess(release_msg)
             except grpc.RpcError:
                 print(f"[Cliente {CLIENT_ID}] Falha ao notificar Release para {other_id}")
