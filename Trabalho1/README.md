@@ -11,7 +11,6 @@ Este projeto implementa um sistema de exclusão mútua distribuída usando o alg
 
 ## 2. Instruções
 
-
 1. Instalar as dependências gRPC:
     ```bash
     pip install -r requirements.txt
