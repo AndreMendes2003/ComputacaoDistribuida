@@ -17,8 +17,9 @@ Este projeto implementa um sistema de exclusão mútua distribuída usando o alg
     pip install -r requirements.txt
 
 2. Geração do Código gRPC:
+
 -Linux:
-   ```bash
+   
     bash generate_grpc.sh
 
 -Windows:
