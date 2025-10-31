@@ -6,7 +6,6 @@ Este projeto implementa um sistema de exclusão mútua distribuída usando o alg
 
 - `/protos` - Contém a definição do serviço `.proto`.
 - `/src` - Contém todo o código-fonte Python (scripts e gRPC gerado).
-- `/docs` - Contém o relatório técnico.
 - `requirements.txt` - Dependências do Python.
 - `generate_grpc.sh` - Script para gerar o código gRPC.
 
