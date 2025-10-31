@@ -26,7 +26,8 @@ Este projeto implementa um sistema de exclusão mútua distribuída usando o alg
    
     python -m grpc_tools.protoc -I=protos/ --python_out=src/ --grpc_python_out=src/ protos/printing.proto
 
-4. Execução:
+3. Execução:
+   
 Necessários 4 terminais (um para o servidor e um para cada cliente).
 
  Terminal 1 (Servidor de Impressão "Burro")
