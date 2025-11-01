@@ -13,8 +13,12 @@ import printing_pb2_grpc
 
 # --- Estado Global do Cliente ---
 
-# Usamos um Lock e uma Condition Variable para gerenciar o estadode forma segura entre a thread principal (lógica do cliente) e as threads do servidor gRPC (que recebem pedidos de outros).
-STATE_LOCK = threading.Lock()
+# Usamos um RLock (reentrant) e uma Condition Variable para gerenciar o estado
+# de forma segura entre a thread principal (lógica do cliente) e as threads do
+# servidor gRPC (que recebem pedidos de outros). RLock evita deadlocks quando
+# funções como `tick()` ou `update_clock()` são chamadas enquanto o lock já
+# está mantido pela mesma thread.
+STATE_LOCK = threading.RLock()
 STATE_CONDITION = threading.Condition(STATE_LOCK)
 
 CLIENT_ID = -1
@@ -106,7 +110,13 @@ class MutualExclusionImpl(printing_pb2_grpc.MutualExclusionServiceServicer):
         
         received_clock = update_clock(request.lamport_timestamp)
         print(f"[Cliente {CLIENT_ID} | TS: {received_clock}] Recebeu notificação 'ReleaseAccess' de {request.client_id}")
-        
+        # Notifica quaisquer handlers de RequestAccess que possam estar
+        # aguardando (deferidos). Eles irão reavaliar a condição e, se for o
+        # caso, responderão "OK".
+        with STATE_LOCK:
+            # Acorda todas as threads esperando na condição
+            STATE_CONDITION.notify_all()
+
         return printing_pb2.Empty()
 
 
@@ -128,13 +138,12 @@ def run_client_logic(my_id, my_port, client_addresses, printer_address):
 
     # --- Conexões gRPC (Stubs) ---
     print(f"[Cliente {CLIENT_ID}] Conectando aos outros clientes: {client_addresses}")
+    # Usamos o endereço (host:port) como chave no dicionário de stubs. Evita
+    # inferir IDs a partir da porta, o que pode ser incorreto/confuso.
     client_stubs = {}
     for addr in client_addresses:
-        # Pega o ID do cliente a partir da porta (ex: 'localhost:50052' -> 52)
-        other_id_str = addr.split(':')[-1]
-        other_id = int(other_id_str) % 100 # Assume que IDs são os 2 últimos dígitos da porta
         channel = grpc.insecure_channel(addr)
-        client_stubs[other_id] = printing_pb2_grpc.MutualExclusionServiceStub(channel)
+        client_stubs[addr] = printing_pb2_grpc.MutualExclusionServiceStub(channel)
 
     print(f"[Cliente {CLIENT_ID}] Conectando ao servidor de impressão: {printer_address}")
     printer_channel = grpc.insecure_channel(printer_address)
@@ -163,15 +172,15 @@ def run_client_logic(my_id, my_port, client_addresses, printer_address):
         # Estas chamadas são bloqueantes. Elas só retornam quando o
         # outro cliente nos envia o AccessResponse("OK").
         reply_count = 0
-        for other_id, stub in client_stubs.items():
-            print(f"[Cliente {CLIENT_ID}] Enviando RequestAccess para {other_id}...")
+        for other_addr, stub in client_stubs.items():
+            print(f"[Cliente {CLIENT_ID}] Enviando RequestAccess para {other_addr}...")
             try:
                 response = stub.RequestAccess(my_req)
                 update_clock(response.lamport_timestamp) # Evento: Recebeu resposta
                 reply_count += 1
-                print(f"[Cliente {CLIENT_ID}] Recebeu 'OK' de {other_id} ({reply_count}/{len(client_stubs)})")
+                print(f"[Cliente {CLIENT_ID}] Recebeu 'OK' de {other_addr} ({reply_count}/{len(client_stubs)})")
             except grpc.RpcError as e:
-                print(f"[Cliente {CLIENT_ID}] ERRO: Não foi possível contatar cliente {other_id}: {e.details()}")
+                print(f"[Cliente {CLIENT_ID}] ERRO: Não foi possível contatar cliente {other_addr}: {e.details()}")
                 # Em um sistema robusto, falhas de nós seriam tratadas aqui.
 
         print(f"\n[Cliente {CLIENT_ID}] Recebeu 'OK' de todos os {reply_count} clientes.")
@@ -219,12 +228,12 @@ def run_client_logic(my_id, my_port, client_addresses, printer_address):
             lamport_timestamp=release_ts,
             request_number=MY_REQUEST_NUMBER
         )
-        for other_id, stub in client_stubs.items():
+        for other_addr, stub in client_stubs.items():
             try:
                 # Esta é uma chamada "fire-and-forget", não espera resposta
                 stub.ReleaseAccess(release_msg)
             except grpc.RpcError:
-                print(f"[Cliente {CLIENT_ID}] Falha ao notificar Release para {other_id}")
+                print(f"[Cliente {CLIENT_ID}] Falha ao notificar Release para {other_addr}")
                 pass 
 
 # --- Inicialização ---
