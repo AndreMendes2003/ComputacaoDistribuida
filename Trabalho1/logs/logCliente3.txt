@@ -1,0 +1,136 @@
+[Cliente -1] Servidor interno iniciado. Ouvindo na porta 50054
+[Cliente -1 | TS: 2] Recebeu RequestAccess de 2 (TS: 1)
+  [Cliente -1 | TS: 3] Respondendo 'OK' para 2
+[Cliente -1 | TS: 22] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 3] Conectando aos outros clientes: ['localhost:50052', 'localhost:50053']
+[Cliente 3] Conectando ao servidor de impressão: localhost:50051
+[Cliente 3 | TS: 32] Recebeu RequestAccess de 2 (TS: 31)
+  [Cliente 3 | TS: 33] Respondendo 'OK' para 2
+[Cliente 3 | TS: 41] Recebeu notificação 'ReleaseAccess' de 2
+
+[Cliente 3 | TS: 42] --- Estado: WANTED (Req N° 1) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3 | TS: 48] Recebeu RequestAccess de 1 (TS: 45)
+  [Cliente 3] Deferindo pedido de 1 (Nosso estado: HELD, Nosso TS: 42)
+[Cliente 3] Impressora confirmou: 'Mensagem 1 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 51] --- Estado: RELEASED (Notificando waiters) ---
+  [Cliente 3 | TS: 52] Respondendo 'OK' para 1
+[Cliente 3 | TS: 60] Recebeu notificação 'ReleaseAccess' de 1
+[Cliente 3 | TS: 62] Recebeu RequestAccess de 2 (TS: 61)
+  [Cliente 3 | TS: 63] Respondendo 'OK' para 2
+
+[Cliente 3 | TS: 64] --- Estado: WANTED (Req N° 2) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3 | TS: 74] Recebeu RequestAccess de 1 (TS: 67)
+[Cliente 3 | TS: 75] Recebeu notificação 'ReleaseAccess' de 2
+  [Cliente 3] Deferindo pedido de 1 (Nosso estado: HELD, Nosso TS: 64)
+  [Cliente 3] Deferindo pedido de 1 (Nosso estado: HELD, Nosso TS: 64)
+[Cliente 3] Impressora confirmou: 'Mensagem 2 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 77] --- Estado: RELEASED (Notificando waiters) ---
+  [Cliente 3 | TS: 78] Respondendo 'OK' para 1
+[Cliente 3 | TS: 86] Recebeu notificação 'ReleaseAccess' de 1
+
+[Cliente 3 | TS: 87] --- Estado: WANTED (Req N° 3) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3] Impressora confirmou: 'Mensagem 3 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 96] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 3 | TS: 99] Recebeu RequestAccess de 1 (TS: 98)
+  [Cliente 3 | TS: 100] Respondendo 'OK' para 1
+[Cliente 3 | TS: 102] Recebeu RequestAccess de 2 (TS: 101)
+  [Cliente 3 | TS: 103] Respondendo 'OK' para 2
+[Cliente 3 | TS: 108] Recebeu notificação 'ReleaseAccess' de 1
+[Cliente 3 | TS: 117] Recebeu notificação 'ReleaseAccess' de 2
+
+[Cliente 3 | TS: 118] --- Estado: WANTED (Req N° 4) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3] Impressora confirmou: 'Mensagem 4 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 127] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 3 | TS: 130] Recebeu RequestAccess de 1 (TS: 129)
+  [Cliente 3 | TS: 131] Respondendo 'OK' para 1
+[Cliente 3 | TS: 133] Recebeu RequestAccess de 2 (TS: 132)
+  [Cliente 3 | TS: 134] Respondendo 'OK' para 2
+[Cliente 3 | TS: 139] Recebeu notificação 'ReleaseAccess' de 1
+[Cliente 3 | TS: 148] Recebeu notificação 'ReleaseAccess' de 2
+
+[Cliente 3 | TS: 149] --- Estado: WANTED (Req N° 5) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3 | TS: 155] Recebeu RequestAccess de 1 (TS: 152)
+  [Cliente 3] Deferindo pedido de 1 (Nosso estado: HELD, Nosso TS: 149)
+[Cliente 3] Impressora confirmou: 'Mensagem 5 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 158] --- Estado: RELEASED (Notificando waiters) ---
+  [Cliente 3 | TS: 159] Respondendo 'OK' para 1
+[Cliente 3 | TS: 167] Recebeu notificação 'ReleaseAccess' de 1
+[Cliente 3 | TS: 169] Recebeu RequestAccess de 2 (TS: 168)
+  [Cliente 3 | TS: 170] Respondendo 'OK' para 2
+[Cliente 3 | TS: 178] Recebeu notificação 'ReleaseAccess' de 2
+
+[Cliente 3 | TS: 179] --- Estado: WANTED (Req N° 6) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3] Impressora confirmou: 'Mensagem 6 do Cliente 3 impressa.'
+
+[Cliente 3 | TS: 188] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 3 | TS: 191] Recebeu RequestAccess de 1 (TS: 190)
+  [Cliente 3 | TS: 192] Respondendo 'OK' para 1
+[Cliente 3 | TS: 200] Recebeu notificação 'ReleaseAccess' de 1
+
+[Cliente 3 | TS: 201] --- Estado: WANTED (Req N° 7) ---
+[Cliente 3] Enviando RequestAccess para localhost:50052...
+[Cliente 3] Recebeu 'OK' de localhost:50052 (1/2)
+[Cliente 3] Enviando RequestAccess para localhost:50053...
+[Cliente 3] Recebeu 'OK' de localhost:50053 (2/2)
+
+[Cliente 3] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 3] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 3] Enviando para a Impressora...
+[Cliente 3 | TS: 207] Recebeu RequestAccess de 2 (TS: 204)
+  [Cliente 3] Deferindo pedido de 2 (Nosso estado: HELD, Nosso TS: 201)
+[Cliente 3] Impressora confirmou: 'Mensagem 7 do Cliente 3 impressa.'
+
+[Cliente 3] Desligando...

@@ -1,0 +1,174 @@
+[Cliente -1] Servidor interno iniciado. Ouvindo na porta 50052
+[Cliente 1] Conectando aos outros clientes: ['localhost:50053', 'localhost:50054']
+[Cliente 1] Conectando ao servidor de impressão: localhost:50051
+
+[Cliente 1 | TS: 1] --- Estado: WANTED (Req N° 1) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] ERRO: Não foi possível contatar cliente localhost:50053: failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50053: ConnectEx: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] ERRO: Não foi possível contatar cliente localhost:50054: failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50054: ConnectEx: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+
+[Cliente 1] Recebeu 'OK' de todos os 0 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 1 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 6] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1] Falha ao notificar Release para localhost:50053
+[Cliente 1] Falha ao notificar Release para localhost:50054
+
+[Cliente 1 | TS: 7] --- Estado: WANTED (Req N° 2) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] ERRO: Não foi possível contatar cliente localhost:50053: failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50053: ConnectEx: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] ERRO: Não foi possível contatar cliente localhost:50054: failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50054: ConnectEx: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+
+[Cliente 1] Recebeu 'OK' de todos os 0 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 2 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 12] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1] Falha ao notificar Release para localhost:50053
+[Cliente 1] Falha ao notificar Release para localhost:50054
+[Cliente 1 | TS: 13] Recebeu RequestAccess de 2 (TS: 1)
+  [Cliente 1 | TS: 14] Respondendo 'OK' para 2
+
+[Cliente 1 | TS: 15] --- Estado: WANTED (Req N° 3) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1 | TS: 24] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1] ERRO: Não foi possível contatar cliente localhost:50054: failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50054: ConnectEx: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+
+[Cliente 1] Recebeu 'OK' de todos os 1 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 3 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 29] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1] Falha ao notificar Release para localhost:50054
+[Cliente 1 | TS: 32] Recebeu RequestAccess de 2 (TS: 31)
+  [Cliente 1 | TS: 33] Respondendo 'OK' para 2
+[Cliente 1 | TS: 41] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1 | TS: 43] Recebeu RequestAccess de 3 (TS: 42)
+  [Cliente 1 | TS: 44] Respondendo 'OK' para 3
+
+[Cliente 1 | TS: 45] --- Estado: WANTED (Req N° 4) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1 | TS: 54] Recebeu notificação 'ReleaseAccess' de 3
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 4 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 59] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1 | TS: 62] Recebeu RequestAccess de 2 (TS: 61)
+  [Cliente 1 | TS: 63] Respondendo 'OK' para 2
+[Cliente 1 | TS: 65] Recebeu RequestAccess de 3 (TS: 64)
+  [Cliente 1 | TS: 66] Respondendo 'OK' para 3
+
+[Cliente 1 | TS: 67] --- Estado: WANTED (Req N° 5) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1 | TS: 71] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1 | TS: 80] Recebeu notificação 'ReleaseAccess' de 3
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 5 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 85] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1 | TS: 88] Recebeu RequestAccess de 3 (TS: 87)
+  [Cliente 1 | TS: 89] Respondendo 'OK' para 3
+[Cliente 1 | TS: 97] Recebeu notificação 'ReleaseAccess' de 3
+
+[Cliente 1 | TS: 98] --- Estado: WANTED (Req N° 6) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1 | TS: 104] Recebeu RequestAccess de 2 (TS: 101)
+  [Cliente 1] Deferindo pedido de 2 (Nosso estado: HELD, Nosso TS: 98)
+[Cliente 1] Impressora confirmou: 'Mensagem 6 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 107] --- Estado: RELEASED (Notificando waiters) ---
+  [Cliente 1 | TS: 108] Respondendo 'OK' para 2
+[Cliente 1 | TS: 117] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1 | TS: 119] Recebeu RequestAccess de 3 (TS: 118)
+  [Cliente 1 | TS: 120] Respondendo 'OK' para 3
+[Cliente 1 | TS: 128] Recebeu notificação 'ReleaseAccess' de 3
+
+[Cliente 1 | TS: 129] --- Estado: WANTED (Req N° 7) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1 | TS: 135] Recebeu RequestAccess de 2 (TS: 132)
+  [Cliente 1] Deferindo pedido de 2 (Nosso estado: HELD, Nosso TS: 129)
+[Cliente 1] Impressora confirmou: 'Mensagem 7 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 138] --- Estado: RELEASED (Notificando waiters) ---
+  [Cliente 1 | TS: 139] Respondendo 'OK' para 2
+[Cliente 1 | TS: 148] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1 | TS: 150] Recebeu RequestAccess de 3 (TS: 149)
+  [Cliente 1 | TS: 151] Respondendo 'OK' para 3
+
+[Cliente 1 | TS: 152] --- Estado: WANTED (Req N° 8) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1 | TS: 161] Recebeu notificação 'ReleaseAccess' de 3
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 8 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 166] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1 | TS: 169] Recebeu RequestAccess de 2 (TS: 168)
+  [Cliente 1 | TS: 170] Respondendo 'OK' para 2
+[Cliente 1 | TS: 178] Recebeu notificação 'ReleaseAccess' de 2
+[Cliente 1 | TS: 180] Recebeu RequestAccess de 3 (TS: 179)
+  [Cliente 1 | TS: 181] Respondendo 'OK' para 3
+[Cliente 1 | TS: 189] Recebeu notificação 'ReleaseAccess' de 3
+
+[Cliente 1 | TS: 190] --- Estado: WANTED (Req N° 9) ---
+[Cliente 1] Enviando RequestAccess para localhost:50053...
+[Cliente 1] Recebeu 'OK' de localhost:50053 (1/2)
+[Cliente 1] Enviando RequestAccess para localhost:50054...
+[Cliente 1] Recebeu 'OK' de localhost:50054 (2/2)
+
+[Cliente 1] Recebeu 'OK' de todos os 2 clientes.
+[Cliente 1] --- Estado: HELD (Entrando na Seção Crítica) ---
+[Cliente 1] Enviando para a Impressora...
+[Cliente 1] Impressora confirmou: 'Mensagem 9 do Cliente 1 impressa.'
+
+[Cliente 1 | TS: 199] --- Estado: RELEASED (Notificando waiters) ---
+[Cliente 1 | TS: 202] Recebeu RequestAccess de 3 (TS: 201)
+  [Cliente 1 | TS: 203] Respondendo 'OK' para 3
+[Cliente 1 | TS: 205] Recebeu RequestAccess de 2 (TS: 204)
+  [Cliente 1 | TS: 206] Respondendo 'OK' para 2
+
+[Cliente 1] Desligando...

@@ -1,0 +1,108 @@
+--- Servidor de Impressão 'Burro' iniciado na porta 50051 ---
+--- IMPRESSORA (TS: 3) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 1, TS: 2)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 9) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 2, TS: 8)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 18) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 1, TS: 17)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 26) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 3, TS: 25)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 37) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 2, TS: 36)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 48) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 1, TS: 47)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 56) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 4, TS: 55)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 67) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 3, TS: 66)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 74) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 2, TS: 73)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 82) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 5, TS: 81)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 93) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 3, TS: 92)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 104) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 6, TS: 103)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 113) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 4, TS: 112)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 124) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 4, TS: 123)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 135) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 7, TS: 134)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 144) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 5, TS: 143)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 155) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 5, TS: 154)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 163) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 8, TS: 162)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 174) ---
+[REQUISIÇÃO RECEBIDA] Cliente 2 (Req N° 6, TS: 173)
+  > Mensagem: 'Trabalho de CD do Cliente 2'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 185) ---
+[REQUISIÇÃO RECEBIDA] Cliente 3 (Req N° 6, TS: 184)
+  > Mensagem: 'Trabalho de CD do Cliente 3'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 196) ---
+[REQUISIÇÃO RECEBIDA] Cliente 1 (Req N° 9, TS: 195)
+  > Mensagem: 'Trabalho de CD do Cliente 1'
+  ...Imprimindo (espera 2s)...
+  ...Impressão Concluída.
+--- IMPRESSORA (TS: 207) ---
+Servidor desligando.
